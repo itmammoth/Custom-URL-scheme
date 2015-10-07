@@ -22,6 +22,8 @@
   <issue>https://github.com/EddyVerbruggen/Custom-URL-scheme/issues</issue>
 
   <preference name="URL_SCHEME" />
+  <preference name="URL_HOST" />
+  <preference name="URL_PATH_PREFIX" />
 
   <engines>
     <engine name="cordova" version=">=3.0.0"/>
@@ -61,14 +63,14 @@
 
     <config-file target="AndroidManifest.xml" parent="/*/application/activity">
       <intent-filter>
-        <data android:scheme="$URL_SCHEME"/>
+        <data android:scheme="$URL_SCHEME" android:host="$URL_HOST" android:pathPrefix="$URL_PATH_PREFIX"/>
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
       </intent-filter>
     </config-file>
   </platform>
-  
+
   <!-- windows8 -->
   <platform name="windows8">
     <config-file target="package.appxmanifest" parent="/Package/Applications/Application/Extensions">
@@ -76,12 +78,12 @@
         <Protocol Name="$URL_SCHEME" />
       </Extension>
     </config-file>
-    
+
     <js-module src="www/windows/LaunchMyApp.js" name="LaunchMyApp">
       <clobbers target="window.plugins.launchmyapp" />
     </js-module>
   </platform>
-	
+
   <!-- windows -->
   <platform name="windows">
     <config-file target="package.windows.appxmanifest" parent="/Package/Applications/Application/Extensions">
